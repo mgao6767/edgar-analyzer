@@ -1,0 +1,5 @@
+__version__ = "0.0.1"
+__description__ = "Textual analysis on SEC filings from EDGAR"
+__author__ = "Mingze Gao"
+__author_email__ = "mingze.gao@sydney.edu.au"
+__url__ = "https://github.com/mgao6767/edgar-analyzer"
