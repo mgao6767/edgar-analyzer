@@ -5,7 +5,7 @@ import pathlib
 import edgar
 
 
-def cmd_download_index(args: argparse.Namespace):
+def cmd(args: argparse.Namespace):
     # create folder if not exists
     path = pathlib.Path(args.output).resolve().as_posix()
     if not os.path.exists(path):
