@@ -1,13 +1,9 @@
 import argparse
-import types
-from edgaranalyzer import __description__, __version__
-
-CMD = types.SimpleNamespace()
-CMD.DOWNLOAD_INDEX = "download_index"
-CMD.DOWNLOAD_FILINGS = "download_filings"
-CMD.BUILD_DATABASE = "build_database"
-CMD.FIND_ITEMS = "find_reported_items"
-CMD.FIND_LOANS = "find_loan_contracts"
+import pathlib
+import sys
+import os
+import logging
+from edgaranalyzer import __description__, __version__, CMD
 
 
 def init_argparse() -> argparse.ArgumentParser:
@@ -20,6 +16,14 @@ def init_argparse() -> argparse.ArgumentParser:
         "--version",
         action="version",
         version=f"{parser.prog} version {__version__}",
+    )
+    parser.add_argument(
+        "-l",
+        "--log",
+        metavar="log_path",
+        help="set log file path",
+        # default=f"{parser.prog}.log",
+        default=None,
     )
     # subparsers
     subparsers = parser.add_subparsers(
@@ -95,10 +99,23 @@ def init_argparse() -> argparse.ArgumentParser:
         help="directory of filings",
     )
     required.add_argument(
+        "--file_type",
+        required=True,
+        metavar="file_type",
+        help="type of filing",
+    )
+    required.add_argument(
         "-db",
         "--database",
         metavar="databsae",
         help="sqlite database to store results",
+    )
+    parser_find_items.add_argument(
+        "-t",
+        "--threads",
+        metavar="threads",
+        help="number of processes to use",
+        default=os.cpu_count(),
     )
 
     # subparser for `find_filings` subcommand
@@ -123,6 +140,23 @@ def init_argparse() -> argparse.ArgumentParser:
 def main():
     parser = init_argparse()
     args = parser.parse_args()
+
+    if args.log is None:
+        logging.basicConfig(
+            stream=sys.stdout,
+            level=logging.DEBUG,
+            format="%(levelname)s - %(asctime)s - %(message)s",
+            datefmt="%m/%d/%Y %I:%M:%S %p",
+        )
+    else:
+        log_path = pathlib.Path(args.log).resolve().as_posix()
+        logging.basicConfig(
+            filename=log_path,
+            level=logging.DEBUG,
+            filemode="w",
+            format="%(levelname)s - %(asctime)s - %(message)s",
+            datefmt="%m/%d/%Y %I:%M:%S %p",
+        )
 
     match args.command:
         case CMD.BUILD_DATABASE:
