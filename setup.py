@@ -8,7 +8,7 @@ from edgaranalyzer import (
     __url__,
 )
 
-requires = ["python-edgar", "tqdm"]
+requires = ["python-edgar", "tqdm", "requests_html"]
 
 setup(
     name="edgar-analyzer",

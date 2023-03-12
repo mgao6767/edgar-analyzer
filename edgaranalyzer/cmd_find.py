@@ -42,6 +42,7 @@ def cmd_find(
     workers = min(os.cpu_count(), int(args.threads))
     file_type = args.file_type
     logger.info(f"total ciks: {len(ciks)}")
+    logger.info(f"filing type: {file_type}")
     logger.info(f"workers: {workers}")
 
     logger.info("start processing")

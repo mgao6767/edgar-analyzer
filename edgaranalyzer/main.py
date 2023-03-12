@@ -89,50 +89,34 @@ def init_argparse() -> argparse.ArgumentParser:
         help="since year (YYYY)",
     )
 
-    # subparser for `find_items` subcommand
-    required = parser_find_items.add_argument_group("required named arguments")
-    required.add_argument(
-        "-d",
-        "--data_dir",
-        required=True,
-        metavar="data_directory",
-        help="directory of filings",
-    )
-    required.add_argument(
-        "--file_type",
-        required=True,
-        metavar="file_type",
-        help="type of filing",
-    )
-    required.add_argument(
-        "-db",
-        "--database",
-        metavar="databsae",
-        help="sqlite database to store results",
-    )
-    parser_find_items.add_argument(
-        "-t",
-        "--threads",
-        metavar="threads",
-        help="number of processes to use",
-        default=os.cpu_count(),
-    )
-
-    # subparser for `find_filings` subcommand
-    required = parser_find_loans.add_argument_group("required named arguments")
-    required.add_argument(
-        "-d",
-        "--data_dir",
-        required=True,
-        metavar="data_directory",
-        help="directory of filings",
-    )
-    required.add_argument(
-        "-db",
-        "--database",
-        metavar="databsae",
-        help="sqlite database to store results",
-    )
+    for p in [parser_find_items, parser_find_loans]:
+        required = p.add_argument_group("required named arguments")
+        required.add_argument(
+            "-d",
+            "--data_dir",
+            required=True,
+            metavar="data_directory",
+            help="directory of filings",
+        )
+        required.add_argument(
+            "--file_type",
+            required=True,
+            metavar="file_type",
+            help="type of filing",
+        )
+        required.add_argument(
+            "-db",
+            "--database",
+            metavar="databsae",
+            help="sqlite database to store results",
+        )
+        p.add_argument(
+            "-t",
+            "--threads",
+            metavar="threads",
+            help="number of processes to use",
+            default=os.cpu_count(),
+        )
 
     return parser
 
