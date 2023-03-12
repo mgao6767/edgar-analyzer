@@ -4,6 +4,7 @@ import typing
 import os, sys
 import types
 import sqlite3
+import random
 import concurrent.futures
 import tqdm
 
@@ -15,6 +16,7 @@ def cmd_find(
     logger: prefix_logger,
     sql: types.SimpleNamespace,
     regsearch: typing.Callable,
+    skip_ciks: list = [],
 ):
     path = pathlib.Path(args.data_dir).expanduser().resolve().as_posix()
     db = pathlib.Path(args.database).expanduser().resolve().as_posix()
@@ -46,7 +48,9 @@ def cmd_find(
     logger.info(f"workers: {workers}")
 
     logger.info("start processing")
+    ciks = [cik for cik in ciks if cik not in skip_ciks]
     progress = tqdm.tqdm(total=len(ciks))
+    random.shuffle(ciks)
     with concurrent.futures.ProcessPoolExecutor(workers) as exe:
         futures = [exe.submit(regsearch, path, cik, file_type) for cik in ciks]
         for f in concurrent.futures.as_completed(futures):

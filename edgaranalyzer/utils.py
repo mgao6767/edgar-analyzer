@@ -60,12 +60,15 @@ def extract_files(file_path: str, out_dir: str) -> List[str]:
     n_docs = int(line.replace(" ", "").split(":")[-1]) if line else 1
     # logger.info(f"{n_docs} documents from {file_path}")
     # Split into documents
+    _, file_type = os.path.split(os.path.dirname(path))
+    _, cik = os.path.split(os.path.dirname(os.path.dirname(path)))
     docs = []
     for ith_doc in range(1, n_docs + 1):
         doc_started = False
         ith_doc_file_name = os.path.split(file_path)[-1].replace(
             ".txt.gz", f".doc-{ith_doc}.txt"
         )
+        ith_doc_file_name = f"{cik}.{file_type}.{ith_doc_file_name}"
         # split into documents
         ith_doc_file = os.path.join(outpath, ith_doc_file_name)
         with open(ith_doc_file, "w") as ftmp:
