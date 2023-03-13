@@ -62,6 +62,17 @@ def init_argparse() -> argparse.ArgumentParser:
             using Nini, Smith and Sufi (2009 JFE)""",
         help="Find loan contracts from filings",
     )
+    parser_find_loan_signature = subparsers.add_parser(
+        CMD.FIND_LOAN_SIGNATURE,
+        description="""Find loan contracts from filings
+            with signature page""",
+        help="Find loans with signature from filings",
+    )
+    parser_sample_loans = subparsers.add_parser(
+        CMD.SAMPLE_LOANS,
+        description="Randomly sample loan contracts from filings",
+        help="Sample loan contracts from filings",
+    )
 
     # subparser for `download_index` subcommand
     required = parser_download.add_argument_group("required named arguments")
@@ -89,7 +100,12 @@ def init_argparse() -> argparse.ArgumentParser:
         help="since year (YYYY)",
     )
 
-    for p in [parser_find_items, parser_find_loans]:
+    for p in [
+        parser_find_items,
+        parser_find_loans,
+        parser_find_loan_signature,
+        parser_sample_loans,
+    ]:
         required = p.add_argument_group("required named arguments")
         required.add_argument(
             "-d",
@@ -110,6 +126,12 @@ def init_argparse() -> argparse.ArgumentParser:
             metavar="databsae",
             help="sqlite database to store results",
         )
+
+    for p in [
+        parser_find_items,
+        parser_find_loans,
+        parser_find_loan_signature,
+    ]:
         p.add_argument(
             "-t",
             "--threads",
@@ -124,6 +146,19 @@ def init_argparse() -> argparse.ArgumentParser:
         const=True,
         action="store_const",
         help="if set, skip init table step",
+    )
+
+    parser_sample_loans.add_argument(
+        "-n",
+        default=10,
+        type=int,
+        help="number of loan filings to sample (default=10)",
+    )
+    parser_sample_loans.add_argument(
+        "--out_dir",
+        metavar="out_dir",
+        default=os.getcwd(),
+        help="output directory",
     )
 
     return parser
@@ -161,6 +196,10 @@ def main():
             from .cmd_find_items import cmd
         case CMD.FIND_LOANS:
             from .cmd_find_loans import cmd
+        case CMD.SAMPLE_LOANS:
+            from .cmd_sample_loans import cmd
+        case CMD.FIND_LOAN_SIGNATURE:
+            from .cmd_find_loan_signature import cmd
         case _:
             cmd = lambda _: None
 
