@@ -82,6 +82,9 @@ def extract_files(file_path: str, out_dir: str) -> List[str]:
                 if line.startswith("</DOCUMENT>"):
                     doc_started = False
                     break
+        if os.path.getsize(ith_doc_file) == 0:
+            os.remove(ith_doc_file)
+            continue
         # rename splited documents based on its name in the filing
         if doc_name.endswith("htm") or doc_name.endswith("html"):
             newname = ith_doc_file.replace("txt", doc_name)

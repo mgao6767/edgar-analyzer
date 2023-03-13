@@ -33,7 +33,8 @@ temp_dir = os.path.join(os.path.dirname(__file__), "__temp")
 
 
 def cmd(args: argparse.Namespace):
-    create_table_in_db(args)
+    if not args.skip_init_table:
+        create_table_in_db(args)
     os.makedirs(temp_dir, exist_ok=True)
     skip_ciks = checked_ciks(args)
     cmd_find(args, logger, sql, regsearch, skip_ciks)

@@ -118,6 +118,14 @@ def init_argparse() -> argparse.ArgumentParser:
             default=os.cpu_count(),
         )
 
+    parser_find_loans.add_argument(
+        "--skip_init_table",
+        default=False,
+        const=True,
+        action="store_const",
+        help="if set, skip init table step",
+    )
+
     return parser
 
 
