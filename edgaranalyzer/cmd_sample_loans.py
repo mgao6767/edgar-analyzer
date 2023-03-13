@@ -3,8 +3,6 @@ import logging
 import os
 import pathlib
 import sqlite3
-import tqdm
-import random
 
 from edgaranalyzer import CMD
 from .utils import prefix_logger, extract_files
