@@ -43,7 +43,7 @@ def cmd(args: argparse.Namespace):
 
 
 def create_table_in_db(args: argparse.Namespace):
-    path = pathlib.Path(args.data_dir).expanduser().as_posix()
+    path = pathlib.Path(args.data_dir).expanduser().resolve().as_posix()
     db = pathlib.Path(args.database).expanduser().resolve().as_posix()
     conn = sqlite3.connect(db)
     c = conn.cursor()
