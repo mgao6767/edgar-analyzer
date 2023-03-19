@@ -56,6 +56,12 @@ def init_argparse() -> argparse.ArgumentParser:
             from header data""",
         help="Find reported items from filings",
     )
+    parser_find_zipcode = subparsers.add_parser(
+        CMD.FIND_ZIPCODE,
+        description="""Find business zipcode from filings
+            from header data""",
+        help="Find reported zipcode from filings",
+    )
     parser_find_loans = subparsers.add_parser(
         CMD.FIND_LOANS,
         description="""Find loan contracts from filings
@@ -103,6 +109,7 @@ def init_argparse() -> argparse.ArgumentParser:
     for p in [
         parser_find_items,
         parser_find_loans,
+        parser_find_zipcode,
         parser_find_loan_signature,
         parser_sample_loans,
     ]:
@@ -130,6 +137,7 @@ def init_argparse() -> argparse.ArgumentParser:
     for p in [
         parser_find_items,
         parser_find_loans,
+        parser_find_zipcode,
         parser_find_loan_signature,
     ]:
         p.add_argument(
@@ -194,6 +202,8 @@ def main():
             from .cmd_download_filings import cmd
         case CMD.FIND_ITEMS:
             from .cmd_find_items import cmd
+        case CMD.FIND_ZIPCODE:
+            from .cmd_find_zipcode import cmd
         case CMD.FIND_LOANS:
             from .cmd_find_loans import cmd
         case CMD.SAMPLE_LOANS:
