@@ -1,5 +1,5 @@
-# edgar-analyzer
- 
+# `edgar-analyzer` - Textual Analysis with EDGAR filings
+
 `edgar-analyzer` is a CLI tool to download SEC filings from EDGAR and perform textual analyses.
 
 ## Installation
@@ -103,3 +103,7 @@ We can find that _most_ filings are filed on the same day as the event reported,
 ## Note
 
 This tool is a work in progress and breaking changes may be expected.
+
+## Contact
+
+If you identify any issue, please feel free to contact me at [mingze.gao@sydney.edu.au](mailto:mingze.gao@sydney.edu.au).
