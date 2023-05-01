@@ -1,7 +1,7 @@
 import types
 import sys
 
-__version__ = "0.0.1rc3"
+__version__ = "0.0.1rc4"
 __description__ = "Textual analysis on SEC filings from EDGAR"
 __author__ = "Mingze Gao"
 __author_email__ = "mingze.gao@sydney.edu.au"

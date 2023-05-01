@@ -101,6 +101,42 @@ def init_argparse() -> argparse.ArgumentParser:
         help="input directory of index files from `download_index`",
     )
 
+    parser_download_filings.add_argument(
+        "-t",
+        "--threads",
+        metavar="threads",
+        help="number of processes to use",
+        default=4,
+    )
+    required = parser_download_filings.add_argument_group("required named arguments")
+    required.add_argument(
+        "-ua",
+        "--user_agent",
+        required=True,
+        metavar="user_agent",
+        help="""User-Agent in request's headers 
+            (e.g., "MyCompany bob@mycompany.com")""",
+    )
+    required.add_argument(
+        "--file_type",
+        required=True,
+        metavar="file_type",
+        help="type of filing",
+    )
+    required.add_argument(
+        "-o",
+        "--output",
+        required=True,
+        metavar="output",
+        help="output directory",
+    )
+    required.add_argument(
+        "-db",
+        "--database",
+        metavar="databsae",
+        help="sqlite database to store results",
+    )
+
     # subparser for `download_index` subcommand
     required = parser_download.add_argument_group("required named arguments")
     required.add_argument(

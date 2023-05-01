@@ -24,10 +24,10 @@ edgar-analyzer download_index --user_agent "MyCompany name@mycompany.com" --outp
 edgar_analyzer build_database --inputdir "./index" --database "edgar-idx.sqlite3"
 ```
 
-Download filings (to be integrated)
+**Download filings**, only filings in the database but not downloaded yet will be downloaded. Download speed will be auto throttled as per SEC's fair use policy.
 
 ```bash
-edgar_analyzer download_filings
+edgar-analyzer download_filings --user_agent "MyCompany name@mycompany.com" --output "./output" --database "edgar-idx.sqlite3" --file_type "8-K" -t 4
 ```
 
 ### Run specific jobs
