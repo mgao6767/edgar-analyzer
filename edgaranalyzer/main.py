@@ -86,6 +86,21 @@ def init_argparse() -> argparse.ArgumentParser:
         help="Sample loan contracts from filings",
     )
 
+    parser_build_db.add_argument(
+        "-db",
+        "--database",
+        metavar="database",
+        default="edgar-idx.sqlite3",
+        help="output sqlite database to store results. Defaults to `edgar-idx.sqlite3`",
+    )
+    required = parser_build_db.add_argument_group("required named arguments")
+    required.add_argument(
+        "-i",
+        "--inputdir",
+        metavar="inputdir",
+        help="input directory of index files from `download_index`",
+    )
+
     # subparser for `download_index` subcommand
     required = parser_download.add_argument_group("required named arguments")
     required.add_argument(

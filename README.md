@@ -12,22 +12,22 @@ pip install edgar-analyzer
 
 ### Setup
 
-Download index files
+**Download index files**, which contain the firm CIK, name, filing date, type, and URL of the filing.
 
 ```bash
 edgar-analyzer download_index --user_agent "MyCompany name@mycompany.com" --output "./index"
+```
+
+**Build a database** of the previously download index files for more efficient queries.
+
+```bash
+edgar_analyzer build_database --inputdir "./index" --database "edgar-idx.sqlite3"
 ```
 
 Download filings (to be integrated)
 
 ```bash
 edgar_analyzer download_filings
-```
-
-Build database (to be integrated)
-
-```bash
-edgar_analyzer build_database
 ```
 
 ### Run specific jobs
