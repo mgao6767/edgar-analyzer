@@ -21,7 +21,7 @@ edgar-analyzer download_index --user_agent "MyCompany name@mycompany.com" --outp
 **Build a database** of the previously download index files for more efficient queries.
 
 ```bash
-edgar_analyzer build_database --inputdir "./index" --database "edgar-idx.sqlite3"
+edgar-analyzer build_database --inputdir "./index" --database "edgar-idx.sqlite3"
 ```
 
 **Download filings**, only filings in the database but not downloaded yet will be downloaded. Download speed will be auto throttled as per SEC's fair use policy.
