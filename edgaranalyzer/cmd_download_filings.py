@@ -50,10 +50,9 @@ def cmd(args: argparse.Namespace):
 
     # Find out the missing ones on the disk
     conn = sqlite3.connect(dbpath)
-    df = pd.read_sql_query(QUERY_FILINGS, conn)
+    __sql = QUERY_FILINGS.replace(";", f' WHERE file_type=="{args.file_type}";')
+    df = pd.read_sql_query(__sql, conn)
     conn.close()
-
-    df = df[df["file_type"] == args.file_type]
 
     jobs = []
     for _, (cik, file_type, date, url) in df.iterrows():
