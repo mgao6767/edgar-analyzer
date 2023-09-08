@@ -14,7 +14,7 @@ setup(
     name="edgar-analyzer",
     version=__version__,
     description=__description__,
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding="utf8").read(),
     long_description_content_type="text/markdown; charset=UTF-8; variant=GFM",
     author=__author__,
     author_email=__author_email__,
