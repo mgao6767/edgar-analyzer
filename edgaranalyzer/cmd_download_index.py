@@ -12,8 +12,5 @@ def cmd(args: argparse.Namespace):
         os.makedirs(path)
     # download index files using `python-edgar`
     edgar.download_index(
-        path,
-        args.since_year,
-        args.user_agent,
-        skip_all_present_except_last=False,
+        path, args.since_year, args.user_agent, skip_all_present_except_last=True
     )
