@@ -4,7 +4,7 @@ import sys
 __version__ = "0.0.1rc7"
 __description__ = "Textual analysis on SEC filings from EDGAR"
 __author__ = "Mingze Gao"
-__author_email__ = "mingze.gao@sydney.edu.au"
+__author_email__ = "mingze.gao@mq.edu.au"
 __url__ = "https://github.com/mgao6767/edgar-analyzer"
 
 if sys.version_info.major < 3 and sys.version_info.minor < 10:

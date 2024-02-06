@@ -106,4 +106,4 @@ This tool is a work in progress and breaking changes may be expected.
 
 ## Contact
 
-If you identify any issue, please feel free to contact me at [mingze.gao@sydney.edu.au](mailto:mingze.gao@sydney.edu.au).
+If you identify any issue, please feel free to contact me at [mingze.gao@mq.edu.au](mailto:mingze.gao@mq.edu.au).
